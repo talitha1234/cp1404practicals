@@ -7,11 +7,10 @@ import random
 
 def main():
     """ Determine score status of user score and randomly generated score """
-
     score = float(input("Enter score: "))
     status = determine_score_status(score)
     print(f'Grade {score} Status: {status}')
-    random_score = random.randint(1,100)
+    random_score = random.randint(1, 100)
     status_random_score = determine_score_status(random_score)
     print(f'Grade {random_score} Status: {status_random_score}')
 
@@ -28,4 +27,5 @@ def determine_score_status(score):
         return "Excellent"
 
 
-main()
+if __name__ == "__main__":
+    main()

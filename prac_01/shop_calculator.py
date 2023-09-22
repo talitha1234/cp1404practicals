@@ -8,6 +8,5 @@ for item in range(number_of_items):
     total += price_of_item
 
 if total > 100:
-    total = 0.9*total
+    total = 0.9 * total
 print(f'Total price for {number_of_items} items is ${total:.2f}')
-

@@ -6,16 +6,14 @@ F - Convert Fahrenheit to Celsius
 Q - Quit
 
 """
+MENU = ["C - Convert Celsius to Fahrenheit\n"
+        "F - Convert Fahrenheit to Celsius\n"
+        "Q - Quit\n"]
 
 
 def main():
-    """
-    Convert temperatures celsius and fahrenheit
-    """
-
-    print("C - Convert Celsius to Fahrenheit\n"
-          "F - Convert Fahrenheit to Celsius\n"
-          "Q - Quit\n")
+    """Convert temperatures celsius and fahrenheit"""
+    print(*MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
         if choice == "C":
@@ -27,9 +25,7 @@ def main():
         else:
             print("Invalid option")
 
-        print("C - Convert Celsius to Fahrenheit\n"
-              "F - Convert Fahrenheit to Celsius\n"
-              "Q - Quit\n")
+        print(*MENU)
         choice = input(">>> ").upper()
 
     print("Thank you.")
