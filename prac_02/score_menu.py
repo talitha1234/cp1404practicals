@@ -10,10 +10,10 @@ import random
 
 from score import determine_score_status
 
-MENU = [f'G Get a valid score (0-100)\n'
+MENU = ('G Get a valid score (0-100)\n'
         f'P Print result\n'
         f'S Show stars\n'
-        f'Q Quit']
+        f'Q Quit')
 
 
 def main():
@@ -25,20 +25,21 @@ def main():
     Q Quit
 
     """
-    score = 0
-    print(*MENU)
+
+    score = get_valid_score()
+    print(MENU)
     choice = input(">").lower()
     while choice != 'q':
         if choice == 'g':
             score = get_valid_score()
-        elif choice == 'p':
+        if choice == 'p':
             status = determine_score_status(score)
             print("Result:", status)
         elif choice == 's':
             print_stars(int(score))
         else:
             print("Invalid choice")
-        print(*MENU)
+        print(MENU)
         choice = input(">").lower()
     random_score = random.randint(1, 100)
     print(f'Random score: {random_score}, Status: {determine_score_status(random_score)}')
