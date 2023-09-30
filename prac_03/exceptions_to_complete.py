@@ -1,6 +1,5 @@
 """
-CP1404/CP5632 - Practical
-Fill in the TODOs to complete the task
+Gets an integer from the user and does not crash when a non-number is entered
 """
 
 is_finished = False
@@ -10,4 +9,4 @@ while not is_finished:
         is_finished = True
     except ValueError:
         print("Please enter a valid integer.")
-print("Valid result is:", result)
+print("Valid result is:", result)  # warning can be ignored because while loop will prevent this
