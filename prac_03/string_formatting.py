@@ -36,4 +36,4 @@ print(f'{year} {name} for about {cost:,.0f}!')
 
 # for loop with the range function and string formatting (right-aligned numbers):
 for number in range(0, 150 + 1, 50):
-    print('{:>3}'.format(number))
+    print(f'{number:>3}')
