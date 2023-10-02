@@ -8,21 +8,20 @@ FILENAME = "subject_data.txt"
 
 def main():
     """Displays data from subjects and demonstrates process with print statements and returns to main with list"""
-    data = get_data()
-    print(data)
+    data = get_subjects()
     display_subject_details(data)
 
 
-def display_subject_details(data):
+def display_subject_details(subjects):
     """Displays subject details from data"""
-    for point in data:
-        print(f'{point[0]} is taught by {point[1]} and has {point[2]} students')
+    for subject in subjects:
+        print(f'{subject[0]} is taught by {subject[1]:12} and has {subject[2]:3} students')
 
 
-def get_data():
+def get_subjects():
     """Read data from file formatted like: subject,lecturer,number of students."""
     input_file = open(FILENAME)
-    data = []
+    subjects = []
     for line in input_file:
         print(line)  # See what a line looks like
         print(repr(line))  # See what a line really looks like
@@ -32,9 +31,9 @@ def get_data():
         parts[2] = int(parts[2])  # Make the number an integer (ignore PyCharm's warning)
         print(parts)  # See if that worked
         print("----------")
-        data.append(parts)
+        subjects.append(parts)
     input_file.close()
-    return data
+    return subjects
 
 
 main()
