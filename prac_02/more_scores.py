@@ -3,7 +3,6 @@ import random
 
 def main():
     number_of_scores = int(input("Number of scores to generate: "))
-
     with open('results', 'w') as out_file:
         for score in range(number_of_scores):
             score = random.randint(1, 100)
