@@ -3,6 +3,7 @@ numbers = []
 for i in range(5):
     list_number = int(input("Number: "))
     numbers.append(list_number)
+
 print(f"The first number is: {numbers[0]}")
 print(f"The last number: {numbers[-1]}")
 print(f"The smallest number: {min(numbers)}")

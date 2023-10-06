@@ -4,7 +4,7 @@ Password checker verifies password entered includes all the necessary characters
 
 MIN_LENGTH = 2
 MAX_LENGTH = 6
-SPECIAL_CHARS_REQUIRED = True
+SPECIAL_CHARS_REQUIRED = True # change to is_charater required
 SPECIAL_CHARACTERS = "!@#$%^&*()_-=+`~,./'[]<>?{}|\\"
 
 
