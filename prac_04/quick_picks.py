@@ -26,13 +26,8 @@ def main():
                 number = random.randint(MINIMUM, MAXIMUM)
             numbers.append(number)  # remember randint is inclusive end unlike range function
         numbers.sort()  # display in ascending order
-        
-        print(" ".join((f'{number:2}' for number in numbers)))
 
-        # Alternative way that takes more lines
-        # for number in numbers:
-        #     print(f"{number:>2}", end=" ")  # format align numbers
-        # print()
+        print(" ".join((f'{number:2}' for number in numbers)))
 
 
 main()
