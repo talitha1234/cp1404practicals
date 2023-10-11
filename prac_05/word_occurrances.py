@@ -12,7 +12,6 @@ for word in words:
         word_to_count[word] += 1
     except KeyError:
         word_to_count[word] = 1
-print(word_to_count)
 
 # change to list to sort
 words = sorted(word_to_count.keys())
