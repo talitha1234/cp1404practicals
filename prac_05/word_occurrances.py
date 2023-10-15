@@ -8,16 +8,15 @@ text = input("Text: ")
 words = text.split()
 word_to_count = {}
 for word in words:
-    try:
+    if word in word_to_count:
         word_to_count[word] += 1
-    except KeyError:
+    else:
         word_to_count[word] = 1
 
 # change to list to sort
 words = sorted(word_to_count.keys())
 
 longest_word_length = max(len(word) for word in words)
-for word in words:
-    # print each word in the list and key
-    print(f'{word:{longest_word_length}}: {word_to_count[word]}')
-dict()
+
+print("\n".join(f'{word:{longest_word_length}}: {word_to_count[word]}' for word in words))
+
