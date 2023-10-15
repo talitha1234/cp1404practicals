@@ -3,7 +3,8 @@
 # 1. Asks the user for their name, then opens a file called "name.txt" and writes that name to it.
 name = input("Name: ")
 file_out = open('name.txt', 'w')
-print(name, file=file_out)
+# print(name, file=file_out) # prints with extra line
+file_out.write(name)
 file_out.close()
 
 # 2. Opens "name.txt" and reads the name (as above) then prints "Your name is ..."
@@ -24,3 +25,4 @@ with open("numbers.txt", 'r') as in_file:
         total += int(line)  # line converted from string
 print(total)
 
+# extra note: readlines returns a list of strings from
