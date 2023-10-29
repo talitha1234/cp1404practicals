@@ -22,6 +22,3 @@ class Guitar:
         if self.get_age() > 50:
             return True
         return False
-
-
-
