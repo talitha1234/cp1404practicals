@@ -19,9 +19,9 @@ class Guitar:
         return datetime.date.today().year - self.year
 
     def is_vintage(self):
-        if guitar.get_age() > 50:
+        if self.get_age() > 50:
             return True
         return False
 
 
-guitar = Guitar("Gibson L-5 CES", 1922, 16035.40)
+
