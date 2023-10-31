@@ -19,7 +19,7 @@ class Guitar:
 
     def __str__(self):
         """Return string representation of data in car."""
-        return f'{self.name} ({self.year}) : ${self.cost}'
+        return f'{self.name} ({self.year}) : ${self.cost:,.2f}'
 
     def get_age(self):
         """Return the age of a guitar."""
@@ -28,4 +28,3 @@ class Guitar:
     def is_vintage(self):
         """Return True if guitar is older than 50 years"""
         return self.get_age() > VINTAGE_AGE
-
