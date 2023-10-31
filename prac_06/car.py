@@ -11,7 +11,7 @@ class Car:
         """
         self.name = name
         self.fuel = fuel
-        self._odometer = 0
+        self._odometer = 0  # non-public because only want it to change when using drive
 
     def __str__(self):
         """Return string representation of car object"""
