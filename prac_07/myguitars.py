@@ -23,8 +23,6 @@ with open("guitars.csv", 'r', newline='') as in_file:
     # Print to check guitars are sorted by year
     # print(guitars)
 
-
-
 with open("guitars.csv", 'w') as out_file:
     for guitar in guitars:
         guitar_string = f'{guitar.name},{guitar.year},{guitar.cost}\n'
