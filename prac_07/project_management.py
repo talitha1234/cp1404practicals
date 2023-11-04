@@ -32,15 +32,14 @@ def main():
     while choice != 'q':
         if choice == 'l':
             load_file = input("Filename as name.txt:")
-            process_incoming_records()
+            projects = process_incoming_records(load_file)
         elif choice == 's':
             save_file = input("Filename as name.txt:")
             process_outgoing_records(projects, save_file)
         elif choice == 'd':
             display_projects(projects)
         elif choice == 'f':
-            # filter_with_date(projects)
-                pass
+            filter_with_date(projects)
         elif choice == 'a':
             # add_project(projects)
             pass
@@ -63,16 +62,12 @@ def add_project(projects):
 
 
 def filter_with_date(projects):
-    # filter by dates
-    # date_string = input("Show projects that start after date (dd/mm/yy): ")  # e.g., "30/9/2022"
-    # Test with:
-    date_string = '30/9/2022'
+    date_string = input("Show projects that start after date (dd/mm/yy): ")  # e.g., "30/9/2022"
+    # # Test with:
+    # date_string = '30/9/2022'
     print("date")
     for project in projects:
-        # compare
-        # object_date = datetime.datetime.strptime(project.start_date, "%d/%m/%Y").date()
-        # date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
-        if datetime.strptime(project.start_date, "%d/%m/%Y").date() > datetime.strptime(date_string, "%d/%m/%Y").date():
+        if date_string > project:
             print(project)
 
 
@@ -89,7 +84,7 @@ def display_projects(projects):
 
 
 
-def process_incoming_records(filename=FILENAME):
+def process_incoming_records(filename):
     # load_file = input("Filename as name.txt:")
     projects = []
     with open(filename, 'r') as in_file:
@@ -104,23 +99,20 @@ def process_incoming_records(filename=FILENAME):
         project_parts[PRIORITY_INDEX] = int(project_parts[PRIORITY_INDEX])
         project_parts[COST_INDEX] = float(project_parts[COST_INDEX])
         project_parts[PERCENT_INDEX] = int(project_parts[PERCENT_INDEX])
-        # want date as date for project class to work
-        # project_parts[DATE_INDEX] = datetime.datetime.strptime(project_parts[DATE_INDEX], "%d/%m/%Y").date()
         project = Project(project_parts[NAME_INDEX], project_parts[DATE_INDEX], project_parts[PRIORITY_INDEX],
                           project_parts[COST_INDEX], project_parts[PERCENT_INDEX])
         projects.append(project)
     return projects
 
 def process_outgoing_records(projects, filename):
-    lines = []
     with open(filename, 'w') as out_file:
-        out_file.write('Name	Start Date	Priority	Cost Estimate	Completion Percentage\n')
+        out_file.write('Name	Start Date	Priority	Cost Estimate	Completion Percentage')
     with open(filename, 'a') as out_file:
         for project in projects:
             # date was changed at some point to y-m-d so reformatting
             # reformatted_date = datetime.datetime.strptime(project[DATE_INDEX], "%d/%m/%Y").date()
-            project_string = (f'{project.name}	{project.start_date}	{project.priority}	{project.cost_estimate}'
-                              f'	{project.completion_percent}\n')
+            project_string = (f'\n{project.name}	{project.start_date}	{project.priority}	{project.cost_estimate}'
+                              f'	{project.completion_percent}')
             out_file.write(project_string)
 
 
@@ -130,12 +122,13 @@ def process_outgoing_records(projects, filename):
 
 def run_tests():
     projects = process_incoming_records('projects.txt')
-    print(projects)
-    process_outgoing_records(projects, 'projects2.txt')
+    # print(projects)
+    # process_outgoing_records(projects, 'projects2.txt')
+    filter_with_date(projects)
 
 
 
 
 
-# main()
-run_tests()
+main()
+# run_tests()
