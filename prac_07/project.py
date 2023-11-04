@@ -37,4 +37,4 @@ def project_tests():
     second_project = Project('Mow Lawn', '31/10/2022', 3, 3.0, 0)
     print(first_project < '31/10/2022')
 
-project_tests()
+# project_tests()

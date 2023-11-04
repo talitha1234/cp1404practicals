@@ -48,7 +48,7 @@ def main():
             pass
         choice = input(MENU).lower()
     process_outgoing_records(projects, FILENAME)
-print("Thank you for using custom-built project management software.")
+    print("Thank you for using custom-built project management software.")
 
 
 def add_project(projects):
@@ -97,6 +97,7 @@ def process_incoming_records(filename=FILENAME):
         # don't want the first line so just read it
         in_file.readline()
         lines = in_file.readlines()
+        # print(lines)
     for line in lines:
         project_parts = line.strip().split('\t')
         # want priority as int and cost as float and percent as int
@@ -111,8 +112,10 @@ def process_incoming_records(filename=FILENAME):
     return projects
 
 def process_outgoing_records(projects, filename):
+    lines = []
     with open(filename, 'w') as out_file:
-        out_file.write('Name	Start Date	Priority	Cost Estimate	Completion Percentage')
+        out_file.write('Name	Start Date	Priority	Cost Estimate	Completion Percentage\n')
+    with open(filename, 'a') as out_file:
         for project in projects:
             # date was changed at some point to y-m-d so reformatting
             # reformatted_date = datetime.datetime.strptime(project[DATE_INDEX], "%d/%m/%Y").date()
@@ -125,11 +128,14 @@ def process_outgoing_records(projects, filename):
 
 
 
+def run_tests():
+    projects = process_incoming_records('projects.txt')
+    print(projects)
+    process_outgoing_records(projects, 'projects2.txt')
 
 
 
 
 
-
-
-main()
+# main()
+run_tests()
