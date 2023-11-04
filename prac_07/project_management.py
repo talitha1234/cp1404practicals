@@ -21,6 +21,7 @@ PERCENT_INDEX = 4
 # print(f"That day is/was {date.strftime('%A')}")
 # print(date.strftime("%d/%m/%Y"))
 
+# load_file = input("Filename as name.txt:")
 projects = []
 with open("projects.txt", 'r') as in_file:
     # file format: Name	Start Date	Priority	Cost Estimate	Completion Percentage
@@ -38,3 +39,26 @@ with open("projects.txt", 'r') as in_file:
         projects.append(project)
 
 print(projects)
+
+# display projects
+complete_projects = (project for project in projects if project.is_complete())
+incomplete_projects = (project for project in projects if not project.is_complete())
+
+print("Incomplete Projects")
+for project in incomplete_projects:
+    print(project)
+
+print("Completed Projects")
+for project in complete_projects:
+    print(project)
+
+
+# add new project
+print("Let's add a new project")
+name = input("Name: ")
+start_date = input("Start date (dd/mm/yy): ")
+priority = input("Priority: ")
+cost = input("Cost estimate: $")
+percent = input("Percent complete: ")
+project = Project(name, start_date, priority, cost, percent)
+projects.append(project)

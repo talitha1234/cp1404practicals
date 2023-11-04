@@ -22,6 +22,9 @@ class Project:
     def __lt__(self, other):
         return self.start_date < other.start_date
 
+    def is_complete(self):
+        return self.completion_percent == 100
+
 
 def project_tests():
     first_project = Project('Build Car Park', '12/09/2021', 2, 600000.0, 95)
@@ -30,4 +33,4 @@ def project_tests():
     #TODO figure out how to make the start_date a date and not a string so that this comparison will work
     # print(first_project < second_project)
 
-project_tests()
+# project_tests()
