@@ -1,9 +1,9 @@
 """
 Project
 Estimate: 4 hours
-start: 5:15pm
+start: 6:50pm
 end:
-Actual:
+Actual: 45 +
 """
 
 
@@ -24,6 +24,8 @@ class Project:
 
     def is_complete(self):
         return self.completion_percent == 100
+
+
 
 
 def project_tests():

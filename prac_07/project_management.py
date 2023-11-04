@@ -16,11 +16,6 @@ PRIORITY_INDEX = 2
 COST_INDEX = 3
 PERCENT_INDEX = 4
 
-# date_string = input("Date (d/m/yyyy): ")  # e.g., "30/9/2022"
-# date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
-# print(f"That day is/was {date.strftime('%A')}")
-# print(date.strftime("%d/%m/%Y"))
-
 # load_file = input("Filename as name.txt:")
 projects = []
 with open("projects.txt", 'r') as in_file:
@@ -33,7 +28,8 @@ with open("projects.txt", 'r') as in_file:
         project_parts[PRIORITY_INDEX] = int(project_parts[PRIORITY_INDEX])
         project_parts[COST_INDEX] = float(project_parts[COST_INDEX])
         project_parts[PERCENT_INDEX] = int(project_parts[PERCENT_INDEX])
-
+        # want date as date for project class to work
+        project_parts[DATE_INDEX] = datetime.datetime.strptime(project_parts[DATE_INDEX], "%d/%m/%Y").date()
         project = Project(project_parts[NAME_INDEX], project_parts[DATE_INDEX], project_parts[PRIORITY_INDEX],
                           project_parts[COST_INDEX], project_parts[PERCENT_INDEX])
         projects.append(project)
@@ -54,11 +50,22 @@ for project in complete_projects:
 
 
 # add new project
-print("Let's add a new project")
-name = input("Name: ")
-start_date = input("Start date (dd/mm/yy): ")
-priority = input("Priority: ")
-cost = input("Cost estimate: $")
-percent = input("Percent complete: ")
-project = Project(name, start_date, priority, cost, percent)
-projects.append(project)
+# print("Let's add a new project")
+# name = input("Name: ")
+# start_date = input("Start date (dd/mm/yy): ")
+# priority = input("Priority: ")
+# cost = input("Cost estimate: $")
+# percent = input("Percent complete: ")
+# project = Project(name, start_date, priority, cost, percent)
+# projects.append(project)
+
+# filter by dates
+# date_string = input("Show projects that start after date (dd/mm/yy): ")  # e.g., "30/9/2022"
+date_string = '30/9/2022'
+date = datetime.datetime.strptime(date_string, "%d/%m/%Y").date()
+print("date")
+for project in projects:
+    if project.start_date > date:
+        print(project)
+
+
