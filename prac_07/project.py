@@ -1,9 +1,7 @@
 """
 Project
 Estimate: 4 hours
-start: 640pm
-end:
-Actual: 45 + 10 + 120 + 20 + 120 + 30
+Actual: 6.75 hours
 """
 from datetime import datetime
 
