@@ -31,10 +31,10 @@ def main():
     choice = input(MENU).lower()
     while choice != 'q':
         if choice == 'l':
-            filename = input("Filename as name.txt:")
+            filename = get_valid_string("Filename as name.txt:")
             projects = process_incoming_records(filename)
         elif choice == 's':
-            filename = input("Filename as name.txt:")
+            filename = get_valid_string("Filename as name.txt:")
             process_outgoing_records(projects, filename)
         elif choice == 'd':
             display_projects(projects)
@@ -54,19 +54,19 @@ def main():
 def update_project(projects):
     for i, project in enumerate(projects, 0):
         print(f'{i} {project}')
-    project_choice = int(input("Project choice: "))
+    project_choice = get_valid_number("Project choice: ")
     print(projects[project_choice])
-    new_percentage = int(input("New percentage: "))
+    new_percentage = get_valid_number("New percentage: ")
     projects[project_choice].completion_percent = new_percentage
 
 
 def add_project(projects):
     print("Let's add a new project")
-    name = input("Name: ")
+    name = get_valid_string("Name: ")
     start_date = input("Start date (dd/mm/yy): ")
-    priority = int(input("Priority: "))
+    priority = get_valid_number("Priority: ")
     cost = float(input("Cost estimate: $"))
-    percent = int(input("Percent complete: "))
+    percent = get_valid_number("Percent complete: ")
     project = Project(name, start_date, priority, cost, percent)
     projects.append(project)
 
@@ -95,7 +95,6 @@ def display_projects(projects):
 
 
 def process_incoming_records(filename):
-    # load_file = input("Filename as name.txt:")
     projects = []
     with open(filename, 'r') as in_file:
         # file format: Name	Start Date	Priority	Cost Estimate	Completion Percentage
@@ -124,7 +123,27 @@ def process_outgoing_records(projects, filename):
             out_file.write(project_string)
 
 
+def get_valid_number(message):
+    """Get a positive number."""
+    is_valid_number = False
+    while not is_valid_number:
+        try:
+            number = int(input(message))
+            while number < 0:
+                print(f"{message} must be not be < 0.")
+                number = int(input(message))
+            is_valid_number = True
+        except ValueError:
+            print("Invalid input; enter a valid number.")
+    return number
 
+def get_valid_string(message):
+    """Get a string value."""
+    string = input(f"{message}")
+    while string == '':
+        print("Input can not be blank")
+        string = input(f"{message}")
+    return string
 
 
 
