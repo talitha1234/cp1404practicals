@@ -31,32 +31,42 @@ def main():
     choice = input(MENU).lower()
     while choice != 'q':
         if choice == 'l':
-            load_file = input("Filename as name.txt:")
-            projects = process_incoming_records(load_file)
+            filename = input("Filename as name.txt:")
+            projects = process_incoming_records(filename)
         elif choice == 's':
-            save_file = input("Filename as name.txt:")
-            process_outgoing_records(projects, save_file)
+            filename = input("Filename as name.txt:")
+            process_outgoing_records(projects, filename)
         elif choice == 'd':
             display_projects(projects)
         elif choice == 'f':
             filter_with_date(projects)
         elif choice == 'a':
-            # add_project(projects)
-            pass
+            add_project(projects)
         elif choice == 'u':
-            pass
+            update_project(projects)
+        else:
+            print("Invalid Choice.")
         choice = input(MENU).lower()
     process_outgoing_records(projects, FILENAME)
     print("Thank you for using custom-built project management software.")
+
+
+def update_project(projects):
+    for i, project in enumerate(projects, 0):
+        print(f'{i} {project}')
+    project_choice = int(input("Project choice: "))
+    print(projects[project_choice])
+    new_percentage = int(input("New percentage: "))
+    projects[project_choice].completion_percent = new_percentage
 
 
 def add_project(projects):
     print("Let's add a new project")
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yy): ")
-    priority = input("Priority: ")
-    cost = input("Cost estimate: $")
-    percent = input("Percent complete: ")
+    priority = int(input("Priority: "))
+    cost = float(input("Cost estimate: $"))
+    percent = int(input("Percent complete: "))
     project = Project(name, start_date, priority, cost, percent)
     projects.append(project)
 
@@ -109,8 +119,6 @@ def process_outgoing_records(projects, filename):
         out_file.write('Name	Start Date	Priority	Cost Estimate	Completion Percentage')
     with open(filename, 'a') as out_file:
         for project in projects:
-            # date was changed at some point to y-m-d so reformatting
-            # reformatted_date = datetime.datetime.strptime(project[DATE_INDEX], "%d/%m/%Y").date()
             project_string = (f'\n{project.name}	{project.start_date}	{project.priority}	{project.cost_estimate}'
                               f'	{project.completion_percent}')
             out_file.write(project_string)
@@ -124,7 +132,8 @@ def run_tests():
     projects = process_incoming_records('projects.txt')
     # print(projects)
     # process_outgoing_records(projects, 'projects2.txt')
-    filter_with_date(projects)
+    # filter_with_date(projects)
+    # add_project(projects)
 
 
 
@@ -132,3 +141,6 @@ def run_tests():
 
 main()
 # run_tests()
+# foods = ['bean', 'mushroom', 'corn']
+# for i, food in enumerate(foods, 0):
+#     print(f'{i} {food}')

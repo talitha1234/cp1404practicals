@@ -1,9 +1,9 @@
 """
 Project
 Estimate: 4 hours
-start: 11pm
+start: 640pm
 end:
-Actual: 45 + 10 + 120 + 20 + 120
+Actual: 45 + 10 + 120 + 20 + 120 + 30
 """
 from datetime import datetime
 
@@ -20,9 +20,8 @@ class Project:
         return (f'{self.name}, start: {self.start_date}, priority {self.priority},'
                 f' estimate: ${self.cost_estimate:,.2f}, completion: {self.completion_percent}% ')
 
-
-
     def __lt__(self, other):
+        # date comes in as a string so need to convert it to compare with other converted string
         return datetime.strptime(self.start_date, "%d/%m/%Y") > datetime.strptime(other, "%d/%m/%Y")
 
     def is_complete(self):
