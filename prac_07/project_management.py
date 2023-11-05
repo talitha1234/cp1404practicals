@@ -54,24 +54,36 @@ def main():
 def update_project(projects):
     for i, project in enumerate(projects, 0):
         print(f'{i} {project}')
-    project_choice = get_valid_number("Project choice: ")
-    print(projects[project_choice])
+    is_project_number = False
+    while not is_project_number:
+            try:
+                project_choice = get_valid_number("Project choice: ")
+                print(projects[project_choice])
+            except IndexError:
+                print("This is not a project number.")
+    #TODO check percent is <= 100
     new_percentage = get_valid_number("New percentage: ")
     projects[project_choice].completion_percent = new_percentage
+
+
 
 
 def add_project(projects):
     print("Let's add a new project")
     name = get_valid_string("Name: ")
-    start_date = input("Start date (dd/mm/yy): ")
+    #TODO check date is of the correct form dd/mm/yyyy
+    start_date = input("Start date (dd/mm/yyyy): ")
     priority = get_valid_number("Priority: ")
+    #TODO error checking for float
     cost = float(input("Cost estimate: $"))
+    #TODO check percent is blow 100
     percent = get_valid_number("Percent complete: ")
     project = Project(name, start_date, priority, cost, percent)
     projects.append(project)
 
 
 def filter_with_date(projects):
+    # TODO check date is of the correct form dd/mm/yyyy
     date_string = input("Show projects that start after date (dd/mm/yy): ")  # e.g., "30/9/2022"
     # # Test with:
     # date_string = '30/9/2022'
@@ -144,7 +156,6 @@ def get_valid_string(message):
         print("Input can not be blank")
         string = input(f"{message}")
     return string
-
 
 
 def run_tests():
