@@ -30,8 +30,6 @@ class Project:
         return self.completion_percent == 100
 
 
-
-
 def project_tests():
     first_project = Project('Build Car Park', '12/09/2021', 2, 600000.0, 95)
     print(first_project)

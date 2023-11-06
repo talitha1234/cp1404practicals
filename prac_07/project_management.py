@@ -82,6 +82,7 @@ def display_incompleted_projects(prioritised_projects):
         if not project.is_complete():
             print(project)
 
+
 def display_completed_projects(prioritised_projects):
     completed_projects = []
     print("Incomplete Projects")
