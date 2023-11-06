@@ -25,7 +25,7 @@ FILENAME = 'projects.txt'
 
 
 def main():
-    """"Manages a list of projects from a file."""
+    """"Manage a list of projects from a file."""
     projects = process_incoming_records(FILENAME)
     choice = input(MENU).lower()
     while choice != 'q':
@@ -36,33 +36,59 @@ def main():
             filename = get_valid_string("Filename as name.txt")
             process_outgoing_records(projects, filename)
         elif choice == 'd':
-            display_projects(projects)
+            prioritised_projects = sorted(projects)
+            display_incompleted_projects(prioritised_projects)
+            display_completed_projects(prioritised_projects)
         elif choice == 'f':
             date_string = get_valid_date("Show projects that start after date (dd/mm/yyyy)")
             display_projects_after_date(date_string, projects)
         elif choice == 'a':
             add_project(projects)
         elif choice == 'u':
-            """Update project with percent completed."""
             display_numbered_projects(projects)
-            is_project_number = False
-            while not is_project_number:
-                try:
-                    project_choice = get_valid_integer("Project choice")
-                    print(projects[project_choice])
-                    is_project_number = True
-                except IndexError:
-                    print("This is not a project number.")
-            new_percentage = get_valid_integer("New percentage")
-            while new_percentage > 100:
-                print("Not a valid percentage.")
-                new_percentage = get_valid_integer("New percentage")
-            projects[project_choice].completion_percent = new_percentage
+            project_choice = get_valid_project_number(projects)
+            get_valid_percentage(project_choice, projects)
         else:
             print("Invalid Choice.")
         choice = input(MENU).lower()
     process_outgoing_records(projects, FILENAME)
     print("Thank you for using custom-built project management software.")
+
+
+def get_valid_percentage(project_choice, projects):
+    new_percentage = get_valid_integer("New percentage")
+    while new_percentage > 100:
+        print("Not a valid percentage.")
+        new_percentage = get_valid_integer("New percentage")
+    projects[project_choice].completion_percent = new_percentage
+
+
+def get_valid_project_number(projects):
+    is_project_number = False
+    while not is_project_number:
+        try:
+            project_choice = get_valid_integer("Project choice")
+            print(projects[project_choice])
+            is_project_number = True
+        except IndexError:
+            print("This is not a project number.")
+    return project_choice
+
+
+def display_incompleted_projects(prioritised_projects):
+    completed_projects = []
+    print("Incomplete Projects")
+    for project in prioritised_projects:
+        if not project.is_complete():
+            print(project)
+
+
+def display_completed_projects(prioritised_projects):
+    completed_projects = []
+    print("Incomplete Projects")
+    for project in prioritised_projects:
+        if project.is_complete():
+            print(project)
 
 
 def display_numbered_projects(projects):
