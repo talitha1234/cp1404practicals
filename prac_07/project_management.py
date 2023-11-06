@@ -36,7 +36,9 @@ def main():
             filename = get_valid_string("Filename as name.txt")
             process_outgoing_records(projects, filename)
         elif choice == 'd':
-            display_projects(projects)
+            prioritised_projects = sorted(projects)
+            display_incompleted_projects(prioritised_projects)
+            display_completed_projects(prioritised_projects)
         elif choice == 'f':
             date_string = get_valid_date("Show projects that start after date (dd/mm/yyyy)")
             display_projects_after_date(date_string, projects)
@@ -63,6 +65,21 @@ def main():
         choice = input(MENU).lower()
     process_outgoing_records(projects, FILENAME)
     print("Thank you for using custom-built project management software.")
+
+
+def display_incompleted_projects(prioritised_projects):
+    completed_projects = []
+    print("Incomplete Projects")
+    for project in prioritised_projects:
+        if not project.is_complete():
+            print(project)
+
+def display_completed_projects(prioritised_projects):
+    completed_projects = []
+    print("Incomplete Projects")
+    for project in prioritised_projects:
+        if project.is_complete():
+            print(project)
 
 
 def display_numbered_projects(projects):
