@@ -24,7 +24,7 @@ class ConvertMilesKm(App):
             self.message = str(0.0)
 
     def handle_increment(self, increment):
-        """Increment miles by amount"""
+        """Increment miles by increment amount"""
         if self.root.ids.user_input.text == '':
             miles = increment
         else:
