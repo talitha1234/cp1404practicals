@@ -20,11 +20,13 @@ class Project:
 
     def __lt__(self, other):
         # date comes in as a string so need to convert it to compare with other converted string
-        try:
+        # try:
+        #     print(repr(other))
             return datetime.strptime(self.start_date, "%d/%m/%Y") > datetime.strptime(other, "%d/%m/%Y")
-        # exception for when sorting by priority and not filtering date
-        except TypeError:
-            return self.priority < other.priority
+        # # exception for when sorting by priority and not filtering date
+        # except TypeError:
+        #     print("Exception")
+        #     return self.priority < other.priority
 
     def is_complete(self):
         return self.completion_percent == 100
