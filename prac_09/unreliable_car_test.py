@@ -8,13 +8,21 @@ from prac_09.unreliable_car import UnreliableCar
 
 def main():
     """Test unreliable car"""
-    old_car = UnreliableCar("old car", 50, 50)
+    old_car = UnreliableCar("old car", 50, 100)
+    print("Before attempt")
     print(old_car)
     old_car.drive(20)
     print(old_car)
-    # check inherited method still works
-    old_car.add_fuel(100)
-    print(old_car)
+
+    other_old_car = UnreliableCar("other_old_car", 50, 1)
+    print("Before attempt")
+    print(other_old_car)
+    other_old_car.drive(20)
+    print(other_old_car)
+
+    # # check inherited method still works
+    # old_car.add_fuel(100)
+    # print(old_car)
 
 
 main()
