@@ -10,7 +10,8 @@ from prac_09.car import Car
 
 class UnreliableCar(Car):
     """Unreliable car class"""
-    def __init__(self, name, fuel, reliability: int):
+
+    def __init__(self, name: str, fuel: float, reliability: int):
         """Construct unreliable car"""
         super().__init__(reliability)
         self.name = name
