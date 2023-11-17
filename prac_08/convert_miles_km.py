@@ -31,7 +31,7 @@ class ConvertMilesKm(App):
             miles = float(self.root.ids.user_input.text) + increment
 
         self.root.ids.user_input.text = str(miles)
-        self.calculate_conversion()
+        # self.calculate_conversion()   # don't need this line because on text event will fire and calculate conversion
 
 
 ConvertMilesKm().run()

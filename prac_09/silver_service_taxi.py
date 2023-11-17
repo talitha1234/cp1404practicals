@@ -13,7 +13,8 @@ class SilverServiceTaxi(Taxi):
     def __init__(self, name, fuel, fanciness: float):
         super().__init__(name, fuel)
         self.price_per_km = Taxi.price_per_km * fanciness
-        print(self.price_per_km)
+        #checking price is correct
+        # print(self.price_per_km)
 
     def __str__(self):
         """Return string like Taxi but with Flagfall added"""
