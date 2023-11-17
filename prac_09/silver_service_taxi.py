@@ -13,7 +13,7 @@ class SilverServiceTaxi(Taxi):
     def __init__(self, name, fuel, fanciness: float):
         super().__init__(name, fuel)
         self.price_per_km = Taxi.price_per_km * fanciness
-        #checking price is correct
+        # checking price is correct
         # print(self.price_per_km)
 
     def __str__(self):

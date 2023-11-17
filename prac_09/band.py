@@ -8,7 +8,7 @@ import keyword
 from tomlkit import string
 
 
-class Band():
+class Band:
     """Band Class"""
 
     def __init__(self, band_name: str):
