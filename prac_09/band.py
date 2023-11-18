@@ -29,8 +29,9 @@ class Band:
         """Return a string showing the instrument playing their first (or no) instrument."""
         players_playing = []
         for musician in self.band_members:
-            try:
-                players_playing.append(f"{musician.name} is playing: {musician.instruments[0]}")
-            except IndexError:
-                players_playing.append(f"{musician.name} needs an instrument!")
+            # the my_band program imports musician class, so I can call this method .play on a musician object
+            # when running my_band
+            players_playing.append(str(musician.play()))
         return "\n".join(players_playing)
+
+
