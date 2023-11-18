@@ -21,13 +21,5 @@ class UnreliableCar(Car):
     def drive(self, distance):
         """Drive car if working"""
         if random.randint(0, 100) < self.reliability:
-            print("Car started")
-            if distance > self.fuel:
-                distance = self.fuel
-                self.fuel = 0
-            else:
-                self.fuel -= distance
-            self.odometer += distance
-        else:
-            print("Car didn't start")
+            super().drive(distance)
         return distance
