@@ -30,8 +30,8 @@ class Band:
         players_playing = []
         for musician in self.band_members:
             # the my_band program imports musician class, so I can call this method .play on a musician object
-            # when running my_band
-            players_playing.append(str(musician.play()))
+            # when running my_band, which returns a string
+            players_playing.append(musician.play())
         return "\n".join(players_playing)
 
 

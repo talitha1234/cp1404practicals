@@ -10,27 +10,28 @@ MENU = 'q)uit, c)hoose taxi, d)rive\n>>> '
 
 
 def main():
-    """Taxi simulator with drive and choose taxi options"""
+    """Taxi simulator with menu q)uit, c)hoose taxi, d)rive"""
     taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2), SilverServiceTaxi("Hummer", 200, 4)]
     current_taxi = None
     bill_to_date = 0
+    print("Let's drive!")
     choice = input(MENU).upper()
     while choice != 'Q':
         if choice == 'C':
+            print("Taxi's available:")
             current_taxi = get_current_taxi(current_taxi, taxis)
         elif choice == 'D':
-            fare = drive_current_taxi(current_taxi)
-            bill_to_date += fare
+            bill_to_date += attempt_drive(current_taxi)
         else:
             print('Invalid option')
         print(f'Bill to date: ${bill_to_date:,.2f}')
         choice = input(MENU).upper()
-    print(f"Total trip cost: {bill_to_date:,.2f}")
-    print("Taxis are now:")
+    print(f"Total trip cost: {bill_to_date:,.2f}\n"
+          f"Taxis are now:")
     display_taxis(taxis)
 
 
-def drive_current_taxi(current_taxi):
+def attempt_drive(current_taxi):
     """Drive current taxi object if there is one"""
     if current_taxi:
         return get_drive_fare(current_taxi)
@@ -50,21 +51,18 @@ def get_drive_fare(current_taxi):
 def get_current_taxi(current_taxi, taxis):
     """Get a valid taxi choice from list displayed"""
     display_taxis(taxis)
-    is_valid_taxi_number = False
-    while not is_valid_taxi_number:
-        number_choice = input("Choose taxi: ")
-        try:
-            current_taxi = taxis[int(number_choice)]
-            is_valid_taxi_number = True
-        except ValueError:
-            print("Invalid taxi choice")
-        except IndexError:
-            print("Invalid taxi choice")
+    number_choice = input("Choose taxi: ")
+    try:
+        current_taxi = taxis[int(number_choice)]
+    except ValueError:
+        print("Invalid taxi choice")
+    except IndexError:
+        print("Invalid taxi choice")
     return current_taxi
-
 
 def display_taxis(taxis):
     """Display Taxis starting at 0"""
+
     for i, taxi in enumerate(taxis):
         print(f'{i} - {taxi}')
 
